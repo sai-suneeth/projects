@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="https://storage.googleapis.com/kaboom-gaming/fevicon.png">
+    <title>Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url('https://storage.googleapis.com/kaboom-gaming/ps5-new.jpg') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            color: white; /* Change entire text to white */
+        }
+
+        .container {
+            width: 300px;
+            margin: 0 auto;
+            padding-top: 50px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input, button {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+
+        input {
+            background: rgba(255, 255, 255, 0.7);
+            border: 1px solid #ccc; /* Optional: Add border for better visibility */
+            color: black; /* Ensure text inside input is readable */
+        }
+
+        button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        input::placeholder {
+            color: #070003;
+        }
+
+        #message {
+            color: red;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .link {
+            margin-top: 10px;
+            display: block;
+            cursor: pointer;
+            color: rgb(242, 15, 15);
+            font-weight: bold;
+            text-decoration: underline;
+        }
+
+        @media only screen and (max-width: 600px) {
+            body {
+                background: url('https://storage.googleapis.com/kaboom-gaming/ps5-newphone.jpg') no-repeat center center fixed;
+                background-size: cover;
+            }
+            .container {
+                padding-top: 125px; /* Move everything lower */
+            }
+
+        }
+                /* Material Symbols Outlined Styling */
+                .material-symbols-outlined {
+            font-variation-settings:
+            'FILL' 0,
+            'wght' 400,
+            'GRAD' 0,
+            'opsz' 24;
+        }
+
+        /* Back Button Styling */
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: rgba(0, 0, 0, 1);
+            color: white;
+            border: 3px solid white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+        }
+
+        .back-button:hover {
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+    </style>
+</head>
+<body>
+        <!-- Back Button -->
+        <button id="back-button" class="back-button" title="Go back to dashboard">
+            <span class="material-symbols-outlined">arrow_back</span>
+        </button>
+    <div class="container" id="login">
+        <h2>Login</h2>
+        <div class="form-group">
+            <label for="login-email">Email:</label>
+            <input type="text" id="login-email-phone" placeholder="Enter your email">
+        </div>
+        <div class="form-group">
+            <label for="login-password">Password:</label>
+            <input type="password" id="login-password" placeholder="Enter your password">
+        </div>
+        <button id="login-button">Login</button>
+        <p id="message"></p>
+        <p class="link" id="register-link">New Registration</p>
+        <p class="link" id="forgot-password-link">Forgot Password</p>
+    </div>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <!-- Firebase App (the core Firebase SDK) -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js"></script>
+    <!-- Firebase Authentication -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-auth.js"></script>
+    <!-- Firebase Firestore -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-firestore.js"></script>
+
+    <!-- Include your own script after Firebase SDK scripts -->
+    <script src="src/login.js"></script>
+</body>
+</html>

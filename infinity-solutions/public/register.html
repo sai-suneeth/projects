@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+    <link rel="icon" type="image/x-icon" href="https://storage.googleapis.com/kaboom-gaming/fevicon.png">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url('https://storage.googleapis.com/kaboom-gaming/ps5-new.jpg') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            color: white;
+        }
+
+        .container {
+            width: 300px;
+            margin: 0 auto;
+            padding-top: 50px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input, button {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+        }
+
+        input {
+            background: rgba(255, 255, 255, 0.6);
+            border: 1px solid #ccc;
+            color: black;
+        }
+
+        button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        input::placeholder {
+            color: #000000;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        #otp-message, #phone-message, #register-message {
+            color: red;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        #email-group, #username-group, #password-group {
+            margin-bottom: 5px;
+        }
+
+        .loading {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .wave {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .wave div {
+            width: 5px;
+            height: 40px;
+            background: black;
+            margin: 0 3px;
+            animation: wave 1.2s infinite ease-in-out;
+        }
+
+        .wave div:nth-child(1) { animation-delay: -1.1s; }
+        .wave div:nth-child(2) { animation-delay: -1s; }
+        .wave div:nth-child(3) { animation-delay: -0.9s; }
+        .wave div:nth-child(4) { animation-delay: -0.8s; }
+        .wave div:nth-child(5) { animation-delay: -0.7s; }
+
+        @keyframes wave {
+            0%, 40%, 100% {
+                transform: scaleY(0.4);
+            }
+            20% {
+                transform: scaleY(1.0);
+            }
+        }
+
+        /* Adjust positioning of checkbox and label */
+        #serenity-group {
+            display: flex;
+            justify-content: space-between; /* Ensure checkbox is to the right of the label */
+            align-items: center;
+        }
+
+        /* Optional: adjust spacing */
+        #serenity-checkbox {
+            margin-left: 10px; /* Add space between label and checkbox */
+        }
+
+        @media only screen and (max-width: 600px) {
+            body {
+                background: url('https://storage.googleapis.com/kaboom-gaming/ps5-newphone.jpg') no-repeat center center fixed;
+                background-size: cover;
+            }
+            .container {
+                padding-top: 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Register</h2>
+        <div class="form-group">
+            <label for="register-phone">Phone Number:</label>
+            <input type="text" id="register-phone" placeholder="Enter phone number" aria-describedby="phone-message">
+            <button id="send-otp-button" aria-label="Send OTP to phone number">Send OTP</button>
+            <p id="phone-message" role="alert"></p>
+        </div>
+        <div class="form-group hidden" id="otp-group">
+            <label for="otp">Enter OTP:</label>
+            <input type="text" id="otp" placeholder="Enter OTP" aria-describedby="otp-message">
+            <div class="button-group">
+                <button id="verify-otp-button" aria-label="Verify OTP">Verify OTP</button>
+                <button id="resend-otp-button" class="hidden" aria-label="Resend OTP">Resend OTP</button>
+            </div>
+            <p id="otp-message" role="alert"></p>
+        </div>
+        <div class="form-group hidden" id="email-group">
+            <label for="register-email">Email:</label>
+            <input type="email" id="register-email" placeholder="Enter email" aria-describedby="register-message">
+        </div>
+        <div class="form-group hidden" id="username-group">
+            <label for="register-username">Username:</label>
+            <input type="text" id="register-username" placeholder="Enter username" aria-describedby="register-message">
+        </div>
+        <div class="form-group hidden" id="password-group">
+            <label for="register-password">Password:</label>
+            <input type="password" id="register-password" placeholder="Enter password" aria-describedby="register-message">
+        </div>
+        <div class="form-group hidden" id="serenity-group" style="display:flex; align-items: center; justify-content: space-between;">
+            <label for="serenity-checkbox" style="white-space: nowrap;">Are You From Serenity?</label>
+            <input type="checkbox" id="serenity-checkbox" name="serenity" style="margin-left: 10px;">
+        </div>
+        <button id="register-button" class="hidden" aria-label="Register">Register</button>
+        <p id="register-message" role="alert"></p>
+        <div id="recaptcha-container"></div>
+        <div class="loading" id="loading-indicator">
+            <div class="wave">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase App (the core Firebase SDK) -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-functions.js"></script>
+
+    <!-- Include your own script after Firebase SDK scripts -->
+    <script src="src/register.js"></script>
+</body>
+</html>

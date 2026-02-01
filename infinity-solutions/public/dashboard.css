@@ -1,0 +1,523 @@
+/* Basic reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Desktop background slideshow */
+body.desktop-background {
+    display: flex;
+    min-height: 100vh;
+    color: #333;
+    background-color: #ccc;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    animation: desktopSlideShow 35s infinite;
+}
+
+@keyframes desktopSlideShow {
+    0% { background-image: url('https://storage.googleapis.com/kaboom-gaming/Gran%20Turismo%207%20pc.jpg');
+        background-position: top center;
+       }
+    20% { background-image: url('https://storage.googleapis.com/kaboom-gaming/Gran%20Turismo%207%20pc.jpg');
+        background-position: top center;
+        }
+    20.01% { background-image: url('https://storage.googleapis.com/kaboom-gaming/godofwar.jpg');
+        background-position: top center;
+           }
+    40% { background-image: url('https://storage.googleapis.com/kaboom-gaming/godofwar.jpg');
+        background-position: top center;
+        }
+    40.01% { background-image: url('https://storage.googleapis.com/kaboom-gaming/gta-5%20new%20pc.jpg');
+        background-position: top center;
+        }
+    60% { background-image: url('https://storage.googleapis.com/kaboom-gaming/gta-5%20new%20pc.jpg');
+        background-position: top center;
+        }
+    60.01% { background-image: url('https://storage.googleapis.com/kaboom-gaming/spidermanpcdev.jpg');
+        background-position: top center;
+        }
+    80% { background-image: url('https://storage.googleapis.com/kaboom-gaming/spidermanpcdev.jpg');
+        background-position: top center;
+        }
+    80.01% { background-image: url('https://storage.googleapis.com/kaboom-gaming/redredemptionpc.jpg');
+        background-position: top center;
+        }
+    100% { background-image: url('https://storage.googleapis.com/kaboom-gaming/redredemptionpc.jpg');
+        background-position: top center;
+         }
+}
+
+.container {
+    display: flex;
+    flex: 1;
+}
+
+.sidebar {
+    width: 220px;
+    background-color: #3f51b5;
+    color: #fff;
+    padding: 20px;
+    flex-shrink: 0;
+}
+
+.title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #fff;
+    text-align: center;
+}
+
+.menu {
+    list-style: none;
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.1s;
+    border-radius: 8px;
+}
+
+.menu-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.menu-item:active {
+    transform: scale(0.95);
+}
+
+.menu-item .material-icons {
+    margin-right: 10px;
+}
+
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    padding-left: 0;
+    padding-top: 0;
+    padding-right: 0;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: calc(100% - 220px); /* Full width minus the sidebar width */
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.4); /* Make the header more transparent */
+    border-bottom: 5px solid #5d3bb3e6;
+    position: fixed; /* Fix the header to the top */
+    top: 0;
+    left: 220px; /* Align with the sidebar */
+    z-index: 1000; /* Ensure the header is on top */
+    backdrop-filter: blur(10px); /* Optional: add blur effect for better visibility */
+    transition: left 0.3s ease; /* Smooth transition for left property */
+}
+
+.user-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: auto;
+}
+
+.user-name {
+    font-weight: 600;
+}
+
+.user-email {
+    font-weight: 400;
+    font-size: 0.9em;
+    color: #666;
+}
+
+
+.content {
+    padding: 20px 0;
+    display: none;
+    margin-top: 100px; /* Ensure content starts below the header */
+}
+
+.content.active {
+    display: block;
+}
+
+.dashboard-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%; /* Ensure it takes full width */
+}
+
+/* Container for action buttons */
+.action-buttons-container {
+    display: flex;
+    flex-direction: column; /* Arrange buttons vertically */
+    align-items: center; /* Center-align the buttons */
+    gap: 20px; /* Space between the buttons */
+    margin-top: 20px;
+    position: relative;
+}
+
+/* Action buttons styling */
+.action-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #3f51b5;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.1s;
+    border-radius: 8px;
+    text-align: center;
+    width: 200px; /* Set a fixed width for the buttons */
+}
+
+.action-button:hover {
+    background-color: #303f9f;
+}
+
+.action-button:active {
+    transform: scale(0.95);
+}
+
+/* Dialog styling */
+.dialog {
+    display: none;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%); /* Center the dialog horizontally */
+    width: 300px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-top: 20px; /* Space above the dialog */
+}
+
+.dialog-content {
+    padding: 20px;
+    text-align: center;
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.dialog input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.dialog button {
+    width: 100%;
+    padding: 10px;
+    background-color: #3f51b5;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.dialog button:hover {
+    background-color: #303f9f;
+}
+/* Container for action buttons */
+.action-buttons-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center-align the buttons */
+    margin-top: 20px; /* Add some top margin if needed */
+}
+
+/* Action buttons styling */
+.action-button {
+    width: 200px; /* Set a fixed width for the buttons */
+    margin-bottom: 10px; /* Add space between the buttons */
+    margin-right: 50px;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #3f51b5;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.1s;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.action-button:hover {
+    background-color: #303f9f;
+}
+
+.action-button:active {
+    transform: scale(0.95);
+}
+
+/* Dialog styling */
+.dialog {
+    display: none;
+    position: absolute; /* Use absolute positioning */
+    left: 60%; /* Center the dialog horizontally */
+    transform: translate(-50%, 0); /* Adjust the centering */
+    width: 300px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-top: 20px; /* Ensure there is space above the dialog */
+}
+
+.dialog-content {
+    padding: 20px;
+    text-align: center;
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.dialog input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.dialog button {
+    width: 100%;
+    padding: 10px;
+    background-color: #3f51b5;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.dialog button:hover {
+    background-color: #303f9f;
+}
+
+
+.booking-button {
+    padding: 15px 12px;
+    font-size: 20px;
+    background-color: #3f51b5;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    /*margin: 0; /* Remove all margins */
+    margin-top: 100px;
+    margin-right: 100px;
+    transition: background 0.3s, transform 0.1s;
+    border-radius: 8px;
+}
+
+.booking-button:hover {
+    background-color: #303f9f;
+}
+
+.booking-button:active {
+    transform: scale(0.95);
+}
+
+.content {
+    padding: 0; /* Remove padding to eliminate space around the content */
+    margin-top: 70px; /* Ensure there is no top margin */
+}
+
+/* Titles and Tables */
+/* Ensure titles are aligned to the extreme left */
+#dashboard h2,
+#transactions h2,
+#account-settings h2 {
+    text-align: left;
+    margin-left: 0;
+    padding-left: 0;
+    width: 100%; /* Ensure the title spans the full width */
+    margin-top: 20px; /* Add margin to move it down */
+}
+
+.dashboard-section h2,
+#transactions h2,
+#account-settings h2 {
+    margin-left: 0;
+    padding-left: 20px; /* Optional: Adds some padding for aesthetics */
+    margin-top: 20px; /* Add margin to move it down */
+}
+
+/* Ensure parent containers don't add extra padding or margin */
+.dashboard-section,
+.content {
+    padding-left: 0;
+    margin-left: 0;
+}
+
+.bookings-table {
+    width: 100%; /* Adjusted the width of the table */
+    border-collapse: collapse;
+    margin-top: 20px;
+    border-radius: 8px;
+    overflow: hidden;
+    background: none; /* Remove the white background */
+}
+
+.bookings-table th,
+.bookings-table td {
+    padding: 8px; /* Increase padding for larger text boxes */
+    text-align: center;
+    border: center;
+    font-weight: bold; /* Make text bolder */
+    font-size: 18px; /* Increase text size */
+}
+
+.bookings-table th:nth-child(1),
+.bookings-table td:nth-child(1) {
+    width: 33%; /* Adjust width for the Start Time column */
+}
+
+.bookings-table th:nth-child(2),
+.bookings-table td:nth-child(2) {
+    width: 33%; /* Adjust width for the End Time column */
+}
+
+.bookings-table th:nth-child(3),
+.bookings-table td:nth-child(3) {
+    width: 33%; /* Adjust width for the Number of Controllers column */
+}
+
+.bookings-table tbody {
+    display: block;
+    max-height: 200px; /* Adjust as needed */
+    overflow-y: auto;
+}
+
+.bookings-table thead,
+.bookings-table tbody tr {
+    display: table;
+    width: 100%;
+}
+
+/* Transactions Table */
+.transactions-table {
+    width: 100%; /* Adjusted the width of the table */
+    border-collapse: collapse;
+    margin-top: 20px;
+    border-radius: 8px;
+    overflow: hidden;
+    background: none; /* Remove the white background */
+}
+
+.transactions-table th,
+.transactions-table td {
+    padding: 15px; /* Increase padding for larger text boxes */
+    text-align: center;
+    border: center;
+    font-weight: bold; /* Make text bolder */
+    font-size: 18px; /* Increase text size */
+    margin: 0;
+}
+
+.transactions-table th:nth-child(1),
+.transactions-table td:nth-child(1) {
+    width: 25%; /* Adjust width for the Start Time column */
+}
+
+.transactions-table th:nth-child(2),
+.transactions-table td:nth-child(2) {
+    width: 25%; /* Adjust width for the End Time column */
+}
+
+.transactions-table th:nth-child(3),
+.transactions-table td:nth-child(3) {
+    width: 25%; /* Adjust width for the Price column */
+}
+
+.transactions-table th:nth-child(4),
+.transactions-table td:nth-child(4) {
+    width: 25%; /* Adjust width for the Payment Success Time column */
+}
+
+.transactions-table tbody {
+    display: block;
+    max-height: 200px; /* Adjust as needed */
+    overflow-y: auto;
+}
+
+.transactions-table thead,
+.transactions-table tbody tr {
+    display: table;
+    width: 100%;
+}
+
+.box {
+    background: rgba(255, 255, 255, 0.6); /* Make the box more transparent */
+    padding: 28px; /* Adjust the padding as needed */
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    width: calc(100% - 260px); /* Adjust width to prevent overlap with response console */
+    margin-left: 10px; /* Center the box horizontally */
+    margin-right: auto; /* Center the box horizontally */
+    overflow: auto; /* Ensure overflowing content is handled */
+    max-width: 775px; /* Set a maximum width if needed */
+}
+
+.response-console {
+    width: 250px;
+    padding: 30px;
+    position: fixed;
+    right: 0;
+    top: 90px; /* Start below the header */
+    bottom: 10px; /* Stretch to the bottom of the page */
+    background: rgba(255, 255, 255, 0.6); /* Make the console more transparent */
+    margin: 10px;
+}
+
+.response-console h2 {
+    margin-bottom: 10px;
+}
+
+#console-messages {
+    max-height: calc(100vh - 160px); /* Adjusted height considering header height */
+    overflow-y: auto;
+    font-size: 14px;
+    color: red; /* Ensure console text is always red */
+    font-weight: bold;
+}
+
+/* Hide sidebar toggle button on desktop */
+@media (min-width: 769px) {
+    #sidebar-toggle {
+        display: none;
+    }
+}
+
+.booking-button-cont {
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

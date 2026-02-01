@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kaboom Gaming Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="mobile-dashboard.css" media="(max-width: 768px)">
+    <link rel="icon" type="image/x-icon" href="https://storage.googleapis.com/kaboom-gaming/fevicon.png">
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <h1 class="title">Kaboom Gaming</h1>
+            <ul class="menu">
+                <li class="menu-item" data-target="dashboard">
+                    <span class="material-icons" style="color: #f44336;">dashboard</span>
+                    Dashboard
+                </li>
+                <li class="menu-item" data-target="transactions">
+                    <span class="material-icons" style="color: #4caf50;">receipt</span>
+                    Transactions
+                </li>
+                <li id="accountsettings" class="menu-item" data-target="account-settings">
+                    <span class="material-icons" style="color: #00bcd4;">settings</span>
+                    Account Settings
+                </li>
+                <li class="menu-item" data-target="logout" id="logout-button">
+                    <span class="material-icons" style="color: #9c27b0;">logout</span>
+                    Logout
+                </li>
+            </ul>
+        </aside>
+        <main class="main-content">
+            <header class="header">
+                <div id="sidebar-toggle" class="material-icons">more_vert</div>
+                <div class="user-info">
+                    <div class="user-name">User Name</div>
+                    <div class="user-email">User Email</div>
+                </div>
+            </header>
+            <section class="content" id="dashboard">
+                <div class="dashboard-section">
+                    <div class="booking-button-cont">
+                        <button id="booking-button" class="booking-button">slot booking</button>
+                    </div>
+                    <h2>Bookings List</h2>
+                    <div class="box">
+                        <table class="bookings-table table">
+                            <thead>
+                                <tr>
+                                    <th>Start Time</th>
+                                    <th>End Time</th>
+                                    <th>Number of Controllers</th>
+                                </tr>
+                            </thead>
+                            <tbody id="bookings-list">
+                                <!-- Booking items will be appended here dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+            <section class="content" id="transactions">
+                <h2>Transactions</h2>
+                <div class="box">
+                    <table class="transactions-table table">
+                        <thead>
+                            <tr>
+                                <th>Start Time</th>
+                                <th>End Time</th>
+                                <th>Amount Paid</th>
+                                <th>Date of Payment</th>
+                            </tr>
+                        </thead>
+                        <tbody id="transactions-list">
+                            <!-- Transactions items will be appended here dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+            <section class="content" id="account-settings">
+                <h2>Account Settings</h2>
+                <div class="action-buttons-container">
+                    <button id="change-email-button" class="action-button">Change Email ID</button>
+                    <button id="change-username-button" class="action-button">Change Username</button>
+                </div>
+
+                <!-- Change Email Dialog -->
+                <div id="change-email-dialog" class="dialog">
+                    <div class="dialog-content">
+                        <span class="close-button" id="close-email-dialog">&times;</span>
+                        <h3>Change Email ID</h3>
+                        <input type="email" id="new-email" placeholder="Enter new email ID">
+                        <button id="verify-email-button" class="action-button">Verify New Email ID</button>
+                    </div>
+                </div>
+
+                <!-- Change Username Dialog -->
+                <div id="change-username-dialog" class="dialog">
+                    <div class="dialog-content">
+                        <span class="close-button" id="close-username-dialog">&times;</span>
+                        <h3>Change Username</h3>
+                        <input type="text" id="new-username" placeholder="Enter new username (at least 6 characters)">
+                        <button id="update-username-button" class="action-button">Update Username</button>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content" id="logout">
+                <!-- Content for Logout -->
+            </section>
+        </main>
+        <div class="response-console box">
+            <h2>Response Console</h2>
+            <div id="console-messages">
+                <!-- Console messages will be appended here dynamically -->
+            </div>
+        </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-firestore.js"></script>
+    <script src="src/dashboard.js"></script>
+</body>
+</html>

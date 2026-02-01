@@ -1,0 +1,148 @@
+@media (max-width: 768px) {
+    body.mobile-background {
+        display: flex;
+        min-height: 100vh;
+        color: #333;
+        background-color: #ccc;
+        background-size: cover;
+        background-position: right center;
+        background-repeat: no-repeat;
+        animation: mobileSlideShow 35s infinite;
+    }
+
+    @keyframes mobileSlideShow {
+        0% { background-image: url('https://storage.googleapis.com/kaboom-gaming/Gran-Turismo-phone.jpg'); }
+        20% { background-image: url('https://storage.googleapis.com/kaboom-gaming/Gran-Turismo-phone.jpg'); }
+        20.01% { background-image: url('https://storage.googleapis.com/kaboom-gaming/godofwarmobile.jpg');
+                 background-position: center center; }
+        40% { background-image: url('https://storage.googleapis.com/kaboom-gaming/godofwarmobile.jpg');
+              background-position: center center;}
+        40.01% { background-image: url('https://storage.googleapis.com/kaboom-gaming/gtamobile.jpg'); }
+        60% { background-image: url('https://storage.googleapis.com/kaboom-gaming/gtamobile.jpg'); }
+        60.01% { background-image: url('https://storage.googleapis.com/kaboom-gaming/spiderman.jpg'); }
+        80% { background-image: url('https://storage.googleapis.com/kaboom-gaming/spiderman.jpg'); }
+        80.01% { background-image: url('https://storage.googleapis.com/kaboom-gaming/wp6341799-red-dead-redemption-mobile-wallpapers.jpg'); }
+        100% { background-image: url('https://storage.googleapis.com/kaboom-gaming/wp6341799-red-dead-redemption-mobile-wallpapers.jpg'); }
+    }
+
+    @keyframes slideBackground {
+        0% { background-position: right center; }
+        100% { background-position: left center; }
+    }
+
+    .container {
+        display: block;
+    }
+
+    .header {
+        width: 100%;
+        padding: 20px;
+        background: rgba(255, 255, 255, 0.2);
+        border-bottom: 5px solid #5d3bb3e6;
+        position: fixed;
+        top: 0;
+        left: 0px;
+        z-index: 999;
+        backdrop-filter: blur(10px);
+        transition: left 0.3s ease;
+        top: 0px;
+        left: 0;
+    }
+
+    .sidebar {
+        width: 200px;
+        position: fixed;
+        top: 0;
+        left: -200px;
+        height: 100%;
+        background-color: #3f51b5;
+        color: #fff;
+        padding: 20px;
+        transition: left 0.3s ease;
+        z-index: 1000;
+    }
+
+    .sidebar.active {
+        left: 0;
+    }
+
+    #sidebar-toggle {
+        display: block;
+        font-size: 35px;
+        cursor: pointer;
+        position: fixed;
+        left: 20px;
+        top: 25px;
+        z-index: 1001;
+    }
+
+    .main-content {
+        padding: 20px;
+        margin-top: 60px;
+    }
+
+    .content {
+        padding: 10px 0;
+    }
+
+    .table {
+        font-size: 12px;
+    }
+
+    .box {
+        width: 100%;
+        padding: 10px;
+        margin-left: 0px;
+    }
+
+    .booking-button {
+        padding: 15px 12px;
+        font-size: 20px;
+        background-color: #3f51b5;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+        margin: 0;
+        margin-top: -70px;
+        margin-right: 0px;
+        transition: background 0.3s, transform 0.1s;
+        border-radius: 8px;
+    }
+
+    /* Hide response console on mobile */
+    .response-console {
+        display: none;
+    }
+
+    /* Centering the action buttons */
+    .action-buttons-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 20px;
+    }
+
+    .action-button {
+        width: 80%; /* Take 80% of the container's width for better alignment */
+        margin-bottom: 20px;
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: #3f51b5;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+        transition: background 0.3s, transform 0.1s;
+        border-radius: 8px;
+        text-align: center;
+    }
+
+    /* Dialog should be positioned below both buttons */
+    .dialog {
+        position: relative; /* Ensure the dialogs are positioned relative to their parent container */
+        width: 90%;
+        margin-top: 20px;
+        top: 0; /* Reset any top position to ensure it appears after buttons */
+        left: 0;
+        transform: none; /* No need for horizontal centering, will be handled by container alignment */
+    }
+}
