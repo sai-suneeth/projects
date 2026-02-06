@@ -143,5 +143,8 @@ Directions:
 
 1.click on the reset button first and start with any direction other than left......
 
+2.Please download the video for the simulation
+
+
 
 
