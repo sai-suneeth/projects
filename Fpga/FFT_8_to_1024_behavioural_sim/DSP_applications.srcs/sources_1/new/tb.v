@@ -41,19 +41,25 @@ module tb_top;
     wire [31:0] doutb;
     wire [31:0] dina;
     wire [31:0] dinb;
-    // Example 64-bit buffer from your IP
-    wire [31:0] X;
+    // Example 64-bit buffer from your IP;
     wire input_valid;
     wire [31:0]real_twiddle;
     wire [31:0]img_twiddle;
     wire [8:0]twiddle_addr;
     wire twiddle_addr_valid;
     wire complete;
-    wire [31:0]comp_data_out_a;
-    wire [31:0]comp_data_out_b;
     wire low_addr_sig;
     wire high_addr_sig;
     wire [8:0]N_point_dft;
+    
+    wire capture;
+    wire complete_ack;
+    wire [31:0]real_input_a;
+    wire [31:0]real_input_b;
+    wire [31:0]img_input_a;
+    wire [31:0]img_input_b;
+    wire stage_start;
+    
 
     // -----------------------
     // Clock generation (100 MHz)
@@ -83,18 +89,22 @@ module tb_top;
         .data_out_b(doutb),
         .dinput_a(dina),
         .dinput_b(dinb),
-        .X(X),
         .input_valid(input_valid),
         .twiddle_real_out(real_twiddle),
         .twiddle_imag_out(img_twiddle),
         .twiddle_addr(twiddle_addr),
         .twiddle_addr_valid(twiddle_addr_valid),
         .complete(complete),
-        .comp_data_out_a(comp_data_out_a),
-        .comp_data_out_b(comp_data_out_b),
         .N_point_dft(N_point_dft),
         .low_addr_sig(low_addr_sig),
-        .high_addr_sig(high_addr_sig)
+        .high_addr_sig(high_addr_sig),
+        .capture(capture),
+        .complete_ack(complete_ack),
+        .real_input_a(real_input_a),
+        .img_input_a(img_input_a),
+        .real_input_b(real_input_b),
+        .img_input_b(img_input_b),
+        .stage_start(stage_start)
     );
 
     // -----------------------
@@ -126,11 +136,17 @@ module tb_top;
                     .complete(complete),
                     .twiddle_addr(twiddle_addr),
                     .twiddle_addr_valid(twiddle_addr_valid),
-                    .comp_data_out_a(comp_data_out_a),
-                    .comp_data_out_b(comp_data_out_b),
                     .N_point_dft(N_point_dft),
                     .low_addr_sig(low_addr_sig),
-                    .high_addr_sig(high_addr_sig)   
+                    .high_addr_sig(high_addr_sig),
+                    .capture(capture),
+                    .complete_ack(complete_ack),
+                    .real_input_a(real_input_a),
+                    .real_input_b(real_input_b),
+                    .img_input_a(img_input_a),
+                    .img_input_b(img_input_b),
+                    .stage_start(stage_start)
+                       
     );
 
     // -----------------------
